@@ -25,9 +25,20 @@ const auth = basicAuth({
     realm: 'wechat-notifier',
 });
 
+console.log('WEB_USER:', USER, 'WEB_PASS:', PASS);
 // 1. GET / 返回前端页面
-router.get('/', auth, (req, res) => {
-    res.sendFile(path.join(__dirname, '../../public/index.html'));
+// 自定义日志中间件包装 auth
+router.get('/', (req, res, next) => {
+  auth(req, res, function(err) {
+    if (err) {
+      console.log('认证失败:', req.headers.authorization); // Base64 用户名密码
+      return; // auth 会返回 401
+    }
+    console.log('认证成功:', req.auth.user); // 认证通过的用户名
+    next(); // 继续执行原来的处理
+  });
+}, (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
 // 2. POST /api/validate 验证凭证并获取成员列表
