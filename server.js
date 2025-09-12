@@ -30,6 +30,11 @@ app.use((req, res) => {
     res.status(404).json({ error: '未找到资源' });
 });
 
+// 健康检查路由
+app.get('/kaithhealth', (req, res) => {
+    res.status(200).send('OK');
+});
+
 // 启动服务器
 app.listen(PORT, () => {
     console.log(`企业微信通知服务已启动，端口: ${PORT}`);
