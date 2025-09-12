@@ -2,6 +2,7 @@
 // 包含所有API端点的路由配置
 
 const express = require('express');
+const basicAuth = require('express-basic-auth');
 const path = require('path');
 const notifier = require('../services/notifier');
 const WeChatService = require('../core/wechat');
@@ -14,8 +15,18 @@ const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || 'default-key-for-developmen
 const wechat = new WeChatService();
 const crypto = new CryptoService(ENCRYPTION_KEY);
 
+// 从环境变量读取用户名密码
+const USER = process.env.WEB_USER || 'admin';
+const PASS = process.env.WEB_PASS || '123456';
+
+const auth = basicAuth({
+    users: { [USER]: PASS },
+    challenge: true,
+    realm: 'wechat-notifier',
+});
+
 // 1. GET / 返回前端页面
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
