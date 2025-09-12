@@ -25,7 +25,6 @@ const auth = basicAuth({
     realm: 'wechat-notifier',
 });
 
-console.log('WEB_USER:', USER, 'WEB_PASS:', PASS);
 // 1. GET / 返回前端页面
 // 自定义日志中间件包装 auth
 router.get('/', (req, res, next) => {
