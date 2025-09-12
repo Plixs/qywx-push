@@ -18,8 +18,8 @@ environment:
   - ENCRYPTION_KEY=change-this-to-a-random-32-character-string  # 加密密钥（必须修改）
   - NODE_ENV=production                               # 运行环境
   - WECHAT_API_BASE=https://qyapi.weixin.qq.com       # 企业微信API地址
-  - WEB_USER=admin                                    # 面板用户名 
-  - WEB_PASS=password                                 # 面板密码 
+  - WEB_USER=admin                                    # 面板用户名 （必须)
+  - WEB_PASS=password                                 # 面板密码 （必须)
 ```
 
 **重要提示**：请务必修改 `ENCRYPTION_KEY` 为一个随机的32字符字符串，以确保数据安全。
