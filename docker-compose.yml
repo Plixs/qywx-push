@@ -13,5 +13,7 @@ services:
       - PORT=12121
       - DB_PATH=/app/database/notifier.db
       - ENCRYPTION_KEY=change-this-to-a-random-32-character-string
+      - WEB_USER=admin
+      - WEB_PASS=password
       - NODE_ENV=production
       - WECHAT_API_BASE=https://qyapi.weixin.qq.com
