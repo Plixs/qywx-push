@@ -16,8 +16,8 @@ const wechat = new WeChatService();
 const crypto = new CryptoService(ENCRYPTION_KEY);
 
 // 从环境变量读取用户名密码
-const USER = process.env.WEB_USER.get() || 'admin';
-const PASS = process.env.WEB_PASS.get() || '123456';
+const USER = process.env.WEB_USER || 'admin';
+const PASS = process.env.WEB_PASS || '123456';
 
 const auth = basicAuth({
     users: { [USER]: PASS },
